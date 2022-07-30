@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserDao">
+    <resultMap id="selectOne" type="user">
+    <id property="id" column="id"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="adress" column="adress" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="did" column="did" jdbcType="INTEGER"/>
+        <association property="dept" select="com.example.demo.dao.UserDao.selectDeptById" column="did"/>
+    </resultMap>
+
+
+    <select id="selectOneById" resultMap="selectOne">
+        SELECT *
+        FROM `t_user`
+        WHERE id = #{id}
+    </select>
+    <select id="selectDeptById"  resultType="dept">
+        SELECT *
+        FROM `t_dept`
+        WHERE did = #{did}
+    </select>
+
+</mapper>

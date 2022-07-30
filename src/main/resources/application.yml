@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: dev
+    include: mvc
+
+#maven配置多环境
+#spring:
+#  profiles:
+#    active: @profile.active@
+#    include: mvc
+
+#spring:
+#  profiles:
+#    active: pru
+#    group:
+#      "pro": dev
+#      "pru": dev,mvc
+logging:
+  pattern:
+    console: "%d - %m %n"
+    rolling-file-name: ct.%d{yyyy-MMM-dd}.%i.log
+  file:
+    name: D:\logs\ct.log
+    max-history: 7
+    max-size: 10MB
+    total-size-cap: 1GB
+    clean-history-on-start: false
